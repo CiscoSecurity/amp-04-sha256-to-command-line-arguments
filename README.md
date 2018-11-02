@@ -10,7 +10,7 @@ The authentictaion parameters are set in the ```api.cfg``` :
 ### Usage
 Provide a SHA256 as a command line argument
 ```
-sha256_to_command_line_arguments.py 935c1861df1f4018d698e8b65abfa02d7e9037d8f68ca3c2065b6ca165d44ad2
+python sha256_to_command_line_arguments.py 935c1861df1f4018d698e8b65abfa02d7e9037d8f68ca3c2065b6ca165d44ad2
 ```
 
 ### Example script output:  
