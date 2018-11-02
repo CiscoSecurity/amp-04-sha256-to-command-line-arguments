@@ -2,6 +2,12 @@ import sys
 import configparser
 import requests
 
+def format_arguments(_arguments):
+    """ If arguments are in a list join them as a single string"""
+    if isinstance(_arguments, list):
+        return ' '.join(_arguments)
+    return _arguments
+
 # Specify the config file
 configFile = 'api.cfg'
 
@@ -21,6 +27,7 @@ process_sha256 = sys.argv[1]
 # Containers for output
 computer_guids = {}
 parent_to = {}
+direct_commands = {'process_names':set(), 'commands':set()}
 
 # Creat session object
 # http://docs.python-requests.org/en/master/user/advanced/
@@ -71,21 +78,27 @@ for guid in computer_guids:
             arguments = event['command_line']['arguments']
             file_sha256 = event['file']['identity']['sha256']
             parent_sha256 = event['file']['parent']['identity']['sha256']
+            file_name = event['file']['file_name']
             if file_sha256 == process_sha256:
-                if isinstance(arguments, list):
-                    print(' '.join(arguments))
-                else:
-                    print(arguments)
+                direct_commands['process_names'].add(file_name)
+                direct_commands['commands'].add(format_arguments(arguments))
+                # print('Process name: {}'.format(file_name))
+                # print('  ',format_arguments(arguments))
             if parent_sha256 == process_sha256:
                 child_file_name = event['file']['file_name']
                 parent_to.setdefault(child_file_name, [])
                 parent_to[child_file_name].append(arguments)
 
-print('\nThis was also parent to {} processes'.format(len(parent_to)))
+print('\nProcess names observed for the SHA256:')
+for name in direct_commands['process_names']:
+    print('  ', name)
+
+print('\nCommand line arguments observed:')
+for command  in direct_commands['commands']:
+    print('  ', command)
+
+print('\nThis SHA256 was also the parent of {} processes'.format(len(parent_to)))
 for process in parent_to:
     print(process)
     for arguments in parent_to[process]:
-        if isinstance(arguments, list):
-            print('  ', ' '.join(arguments))
-        else:
-            print(arguments)
+        print('  ', format_arguments(arguments))
