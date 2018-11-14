@@ -1,3 +1,5 @@
+[![Gitter chat](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/CiscoSecurity/AMP-for-Endpoints "Gitter chat")
+
 ### AMP for Endpoints SHA256 to command line arguments
 
 Takes a SHA256 as input and queries the environment extracting command line arguments used by processes associated with the SHA256.
