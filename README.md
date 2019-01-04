@@ -5,7 +5,7 @@
 Takes a SHA256 as input and queries the environment extracting command line arguments used by processes associated with the SHA256.
 
 ### Before using you must update the following:
-The authentictaion parameters are set in the ```api.cfg``` :
+The authentication parameters are set in the ```api.cfg``` :
 - client_id 
 - api_key
 
