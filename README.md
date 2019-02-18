@@ -1,6 +1,6 @@
 [![Gitter chat](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/CiscoSecurity/AMP-for-Endpoints "Gitter chat")
 
-### AMP for Endpoints SHA256 to command line arguments
+### AMP for Endpoints SHA256 to command line arguments:
 
 Takes a SHA256 as input and queries the environment extracting command line arguments used by processes associated with the SHA256.
 
@@ -9,7 +9,7 @@ The authentication parameters are set in the ```api.cfg``` :
 - client_id 
 - api_key
 
-### Usage
+### Usage:
 Provide a SHA256 as a command line argument
 ```
 python sha256_to_command_line_arguments.py 935c1861df1f4018d698e8b65abfa02d7e9037d8f68ca3c2065b6ca165d44ad2
